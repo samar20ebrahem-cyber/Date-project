@@ -21,7 +21,6 @@ class AgeCalculator{
             this.result.style.display="block";
             return;
         }
-        this.result.style.display="none";
         const birthDate = new Date(birthValue);  //  تاريخ الميلاد حولناه لتاريخ حقيقي
         const today = new Date ;    //  تاريخ النهارده 
       
@@ -43,7 +42,6 @@ class AgeCalculator{
        عمرك :
        ${years}سنه و / / ${months}شهرو${days} يوم
        `;
-       this.result.style.display="block";
     }
 
 }

@@ -1,48 +1,53 @@
-class AgeCalculator{
-    constructor(){
-        this.inputAge =document.getElementById('label');
-        this.calculateBtn =document.getElementById('calculate');
-        this.result =document.getElementById('result');
+class AgeCalculator {
+    constructor() {
+        this.inputAge = document.getElementById('label');
+        this.calculateBtn = document.getElementById('calculate');
+        this.result = document.getElementById('result');
 
         this.initEvents();
     }
-    initEvents(e){
-        this.calculateBtn.addEventListener('click',(e)=>{
+
+    initEvents() {
+        this.calculateBtn.addEventListener('click', (e) => {
             this.processAge(e);
         });
     }
 
-    processAge(e){
-        const birthValue=this.inputAge.value;
-        if(birthValue === '')
-        {
-            this.result.textContent='دخل تاريخ ميلادك الاول ';
-            this.result.style.color="red";
-            this.result.style.display="block";
+    processAge(e) {
+        const birthValue = this.inputAge.value;
+        
+        if (birthValue === '') {
+            this.result.textContent = 'دخل تاريخ ميلادك الأول';
+            this.result.style.color = "red";
+            this.result.style.display = "block";
             return;
         }
-        const birthDate = new Date(birthValue);  //  تاريخ الميلاد حولناه لتاريخ حقيقي
-        const today = new Date ;    //  تاريخ النهارده 
+
+        const birthDate = new Date(birthValue);  // تاريخ الميلاد
+        const today = new Date();              // تاريخ اليوم
       
-       let years = today.getFullYear() -birthDate.getFullYear();
-       let months = today.getMonth() - birthDate.getMonth();
-       let days = today.getDate() - birthDate.getDate();
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
 
-       if(months < 0 || (months === 0 && days<0)){
-        years--;
-        months+=12;
-       }
-       if(days<0){
-        months--;
-        const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-        days += previousMonth.getDate();
-       }
+        if (days < 0) {
+            months--;
+            const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+            days += previousMonth.getDate();
+        }
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
 
-       this.result.innerHTML =`
-       عمرك :
-       ${years}سنه و / / ${months}شهرو${days} يوم
-       `;
+        
+        this.result.style.color = "green"; 
+        this.result.style.display = "block";
+        this.result.innerHTML = `
+            عمرك الحالي: <br>
+            ${years} سنة، و ${months} شهر، و ${days} يوم.
+        `;
     }
-
 }
+
 const calculator = new AgeCalculator();

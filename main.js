@@ -43,11 +43,14 @@ class AgeCalculator {
         
         this.result.style.color = "green"; 
         this.result.style.display = "block";
-        this.result.innerHTML = `
-            عمرك الحالي: <br>
-            ${years} سنة، و ${months} شهر، و ${days} يوم.
-        `;
-    }
+      this.result.innerHTML = `
+    عمرك الحالي: <br>
+    <strong>${years}</strong> سنة، و <strong>${months}</strong> شهر، و <strong>${days}</strong> يوم.
+`;
+this.result.style.textAlign = "center";
+this.result.style.direction = "rtl"; // التعديل السحري هنا عشان يظبط اتجاه العربي
+this.result.style.lineHeight = "1.6"; // ضفتلك دي عشان تدي مسافة مريحة بين السطرين
+}
 }
 
 const calculator = new AgeCalculator();
